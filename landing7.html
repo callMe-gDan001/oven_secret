@@ -1,0 +1,376 @@
+<!DOCTYPE html>
+<html lang="en" class="scroll-smooth">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Oven Secret Lekki - Luxury Confectionery & Cakes</title>
+    <meta name="description" content="Oven Secret Lekki - The ultimate taste of luxury. Artisan cakes and gourmet pastries in the heart of Lekki Phase 1.">
+    
+    <script src="https://cdn.tailwindcss.com"></script>
+    
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@300;400;600;800&family=Fraunces:ital,opsz,wght@0,9..144,700;1,9..144,400&display=swap" rel="stylesheet">
+    
+    <script src="https://unpkg.com/lucide@latest"></script>
+
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    fontFamily: {
+                        sans: ['Plus Jakarta Sans', 'sans-serif'],
+                        serif: ['Fraunces', 'serif'],
+                    },
+                    colors: {
+                        brand: {
+                            50: '#fff1f2',
+                            500: '#e11d48', 
+                            600: '#be123c',
+                            900: '#4c0519',
+                        }
+                    }
+                }
+            }
+        }
+    </script>
+    <style>
+        .glass-nav {
+            background-color: rgba(255, 255, 255, 0.98);
+            backdrop-filter: blur(12px);
+            box-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.05);
+            padding-top: 0.5rem !important;
+            padding-bottom: 0.5rem !important;
+        }
+        
+        .tab-active {
+            background: #e11d48;
+            color: white;
+            box-shadow: 0 4px 12px rgba(225, 29, 72, 0.3);
+        }
+        
+        .product-card {
+            opacity: 0;
+            transform: translateY(20px);
+            animation: fadeUp 0.5s cubic-bezier(0.16, 1, 0.3, 1) forwards;
+        }
+        
+        @keyframes fadeUp {
+            to { opacity: 1; transform: translateY(0); }
+        }
+
+        .hide-scroll::-webkit-scrollbar { display: none; }
+        
+        .logo-img {
+            filter: brightness(0) invert(1);
+            transition: filter 0.3s;
+        }
+        
+        .glass-nav .logo-img {
+            filter: none;
+        }
+    </style>
+</head>
+<body class="bg-white text-slate-900 font-sans antialiased selection:bg-rose-100">
+
+    <nav id="navbar" class="fixed w-full z-50 transition-all duration-300 py-6 bg-transparent">
+        <div class="max-w-7xl mx-auto px-6 flex justify-between items-center">
+            <div class="flex items-center gap-3">
+                <img src="image-2.png" class="logo-img w-14 h-14 object-contain" alt="Logo">
+                <span id="nav-tagline" class="text-[10px] font-bold tracking-[0.2em] text-white/70 uppercase transition-colors">Lekki Confectionery</span>
+            </div>
+
+            <div id="nav-links" class="hidden md:flex items-center gap-10 font-semibold text-white transition-colors">
+                <a href="#products" class="hover:text-brand-500 transition-colors">The Menu</a>
+                <a href="#about" class="hover:text-brand-500 transition-colors">Our Story</a>
+                <a href="#contact" class="hover:text-brand-500 transition-colors">Custom Orders</a>
+                <button class="bg-brand-500 hover:bg-brand-600 text-white px-7 py-2.5 rounded-full shadow-lg flex items-center gap-2 transition-transform hover:scale-105 active:scale-95">
+                    <i data-lucide="shopping-cart" class="w-4 h-4 pointer-events-none"></i>
+                    <span>Order Now</span>
+                </button>
+            </div>
+
+            <button id="menu-btn" class="md:hidden text-white transition-colors">
+                <i data-lucide="menu" class="w-8 h-8 pointer-events-none"></i>
+            </button>
+        </div>
+    </nav>
+
+    <div id="mobile-menu" class="fixed inset-0 bg-white z-[60] transform translate-x-full transition-transform duration-500 flex flex-col items-center justify-center gap-8 md:hidden">
+        <button id="close-menu-btn" class="absolute top-6 right-6 text-slate-800">
+            <i data-lucide="x" class="w-8 h-8 pointer-events-none"></i>
+        </button>
+        <a href="#products" class="text-4xl font-black text-slate-900 click-close">The Menu</a>
+        <a href="#about" class="text-4xl font-black text-slate-900 click-close">Our Story</a>
+        <a href="#contact" class="text-4xl font-black text-slate-900 click-close">Custom Orders</a>
+        <button class="mt-4 bg-brand-500 text-white px-10 py-4 rounded-full text-xl font-bold">Shop Now</button>
+    </div>
+
+    <header class="relative h-screen flex items-center justify-center overflow-hidden">
+        <div class="absolute inset-0 z-0">
+            <img 
+                src="https://images.unsplash.com/photo-1578985545062-69928b1d9587?auto=format&fit=crop&q=80&w=2000" 
+                alt="Oven Secret Luxury Cakes" 
+                class="w-full h-full object-cover brightness-[0.55]"
+                fetchpriority="high"
+            >
+            <div class="absolute inset-0 bg-gradient-to-b from-black/40 via-transparent to-white"></div>
+        </div>
+
+        <div class="relative z-10 text-center px-6 max-w-5xl mx-auto mt-10">
+            <div class="inline-flex items-center gap-2 bg-white/10 backdrop-blur-md border border-white/20 text-white px-5 py-2 rounded-full mb-8">
+                <i data-lucide="sparkles" class="w-4 h-4 text-brand-500"></i>
+                <span class="text-xs font-bold tracking-widest uppercase">The Taste of Luxury</span>
+            </div>
+            
+            <h1 class="text-6xl md:text-8xl lg:text-9xl font-black text-white mb-8 tracking-tighter leading-none">
+                BEYOND <br/>
+                <span class="font-serif italic font-light text-brand-500">Cakes</span>
+            </h1>
+            
+            <p class="text-white text-lg md:text-2xl max-w-2xl mx-auto mb-12 font-medium leading-relaxed opacity-90">
+                Premium artisan confectionery in Lekki Phase 1. Discover the secret behind Lagos' most celebrated desserts.
+            </p>
+            
+            <div class="flex flex-col sm:flex-row items-center justify-center gap-5">
+                <a href="#products" class="w-full sm:w-auto bg-brand-500 hover:bg-brand-600 text-white px-12 py-5 rounded-full text-lg font-black transition-all shadow-2xl hover:-translate-y-1">
+                    View Collections
+                </a>
+                <a href="#contact" class="w-full sm:w-auto bg-white hover:bg-slate-50 text-slate-900 px-12 py-5 rounded-full text-lg font-black transition-all shadow-xl">
+                    Custom Designs
+                </a>
+            </div>
+        </div>
+    </header>
+
+    <div class="relative z-20 max-w-6xl mx-auto -mt-20 px-4">
+        <div class="bg-white rounded-3xl shadow-2xl p-8 grid grid-cols-1 md:grid-cols-3 gap-10 border border-slate-100">
+            <div class="flex flex-col items-center text-center space-y-3">
+                <div class="w-14 h-14 bg-rose-50 rounded-2xl flex items-center justify-center text-brand-500">
+                    <i data-lucide="utensils" class="w-7 h-7"></i>
+                </div>
+                <h3 class="font-black text-slate-900">Fine Ingredients</h3>
+                <p class="text-slate-500 text-sm font-medium">Real butter, gourmet chocolate, no artificial flavors.</p>
+            </div>
+            <div class="flex flex-col items-center text-center space-y-3 md:border-x border-slate-100">
+                <div class="w-14 h-14 bg-rose-50 rounded-2xl flex items-center justify-center text-brand-500">
+                    <i data-lucide="palette" class="w-7 h-7"></i>
+                </div>
+                <h3 class="font-black text-slate-900">Artisan Finish</h3>
+                <p class="text-slate-500 text-sm font-medium">Every cake is a hand-crafted masterpiece.</p>
+            </div>
+            <div class="flex flex-col items-center text-center space-y-3">
+                <div class="w-14 h-14 bg-rose-50 rounded-2xl flex items-center justify-center text-brand-500">
+                    <i data-lucide="star" class="w-7 h-7"></i>
+                </div>
+                <h3 class="font-black text-slate-900">Elite Service</h3>
+                <p class="text-slate-500 text-sm font-medium">Seamless ordering for your most special moments.</p>
+            </div>
+        </div>
+    </div>
+
+    <section id="products" class="py-32 max-w-7xl mx-auto px-6">
+        <div class="flex flex-col md:flex-row md:items-end justify-between mb-16 gap-6">
+            <div class="max-w-xl">
+                <span class="text-brand-500 font-black text-xs uppercase tracking-[0.3em] mb-3 block">Our Selection</span>
+                <h2 class="text-5xl md:text-6xl font-black text-slate-900 tracking-tight leading-none">The Luxury <br/><span class="font-serif italic font-light">Bakehouse</span></h2>
+            </div>
+            
+            <div class="flex gap-2 overflow-x-auto hide-scroll pb-2" id="category-tabs">
+                <button onclick="filterProducts('classic')" class="category-btn tab-active px-8 py-3 rounded-full text-sm font-black transition-all whitespace-nowrap" data-category="classic">Classic Cakes</button>
+                <button onclick="filterProducts('premium')" class="category-btn px-8 py-3 rounded-full text-sm font-black transition-all bg-slate-50 text-slate-400 hover:text-brand-500 whitespace-nowrap" data-category="premium">Premium Tiers</button>
+                <button onclick="filterProducts('pastries')" class="category-btn px-8 py-3 rounded-full text-sm font-black transition-all bg-slate-50 text-slate-400 hover:text-brand-500 whitespace-nowrap" data-category="pastries">Gourmet Pastries</button>
+            </div>
+        </div>
+
+        <div id="product-grid" class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-10 min-h-[500px]">
+            </div>
+    </section>
+
+    <section id="about" class="py-32 bg-slate-950 text-white relative overflow-hidden">
+        <div class="max-w-7xl mx-auto px-6 grid lg:grid-cols-2 gap-20 items-center">
+            <div class="order-2 lg:order-1 relative">
+                <img 
+                    src="https://images.unsplash.com/photo-1464349095431-e9a21285b5f3?auto=format&fit=crop&q=80&w=600" 
+                    alt="Cake Decoration" 
+                    class="rounded-3xl w-full h-[600px] object-cover shadow-2xl"
+                    loading="lazy"
+                >
+                <div class="absolute -bottom-10 -right-10 bg-brand-500 p-10 rounded-3xl hidden md:block">
+                    <p class="text-4xl font-black mb-1 italic font-serif">Luxury</p>
+                    <p class="text-xs font-bold uppercase tracking-widest opacity-80">Redefined in Lekki</p>
+                </div>
+            </div>
+            <div class="order-1 lg:order-2">
+                <span class="text-brand-500 font-black text-xs uppercase tracking-[0.3em] mb-4 block">The Secret</span>
+                <h2 class="text-5xl md:text-7xl font-black mb-8 tracking-tighter">Crafting <br/>Excellence.</h2>
+                <p class="text-slate-400 text-xl mb-10 leading-relaxed font-medium">
+                    At Oven Secret, we don't just bake; we create edible art. Located in Lekki Phase 1, we serve a clientele that demands nothing but the best. Our confectionery is built on the philosophy that a cake should taste even better than it looks.
+                </p>
+                <div class="grid grid-cols-2 gap-10">
+                    <div>
+                        <p class="text-5xl font-black text-white mb-2 tracking-tighter">5.0</p>
+                        <p class="text-slate-500 text-sm font-bold uppercase tracking-widest">Client Rating</p>
+                    </div>
+                    <div>
+                        <p class="text-5xl font-black text-white mb-2 tracking-tighter">100%</p>
+                        <p class="text-slate-500 text-sm font-bold uppercase tracking-widest">Bespoke</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section id="contact" class="py-32 bg-white">
+        <div class="max-w-4xl mx-auto px-6">
+            <div class="text-center mb-16">
+                <h2 class="text-5xl md:text-6xl font-black text-slate-900 tracking-tight">Custom Cake Inquiry</h2>
+                <p class="text-slate-500 mt-4 text-xl">Let's design the center-piece for your next celebration.</p>
+            </div>
+            
+            <form class="bg-slate-50 p-10 rounded-3xl space-y-6">
+                <div class="grid md:grid-cols-2 gap-6">
+                    <input type="text" placeholder="Your Name" class="w-full px-6 py-4 bg-white border-none rounded-2xl focus:ring-2 focus:ring-brand-500 transition-all font-semibold shadow-sm">
+                    <input type="tel" placeholder="Phone Number" class="w-full px-6 py-4 bg-white border-none rounded-2xl focus:ring-2 focus:ring-brand-500 transition-all font-semibold shadow-sm">
+                </div>
+                <div class="grid md:grid-cols-2 gap-6">
+                    <select class="w-full px-6 py-4 bg-white border-none rounded-2xl focus:ring-2 focus:ring-brand-500 transition-all font-semibold shadow-sm text-slate-500">
+                        <option>Event Type</option>
+                        <option>Wedding</option>
+                        <option>Birthday</option>
+                        <option>Corporate</option>
+                        <option>Anniversary</option>
+                    </select>
+                    <input type="date" class="w-full px-6 py-4 bg-white border-none rounded-2xl focus:ring-2 focus:ring-brand-500 transition-all font-semibold shadow-sm text-slate-500">
+                </div>
+                <textarea rows="4" placeholder="Tell us about your dream cake..." class="w-full px-6 py-4 bg-white border-none rounded-2xl focus:ring-2 focus:ring-brand-500 transition-all font-semibold shadow-sm"></textarea>
+                <button type="button" class="w-full bg-brand-500 text-white py-5 rounded-2xl font-black text-lg hover:bg-brand-600 transition-all shadow-xl">
+                    Request a Quote
+                </button>
+            </form>
+        </div>
+    </section>
+
+    <footer class="bg-slate-950 text-slate-500 py-20 border-t border-white/5">
+        <div class="max-w-7xl mx-auto px-6 text-center">
+            <div class="flex justify-center items-center gap-3 mb-10">
+                <img src="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 200 200'%3E%3Ccircle cx='100' cy='70' r='30' fill='none' stroke='white' stroke-width='4'/%3E%3Cpath d='M85 60 Q75 35 80 50 Q82 55 82 65 Q82 70 85 75 Q88 78 92 78 Q95 75 95 70 Q95 65 92 60 Q90 55 85 60 Z' fill='white'/%3E%3Cpath d='M115 60 Q125 35 120 50 Q118 55 118 65 Q118 70 115 75 Q112 78 108 78 Q105 75 105 70 Q105 65 108 60 Q110 55 115 60 Z' fill='white'/%3E%3Ctext x='100' y='130' font-family='Arial' font-size='24' font-weight='bold' text-anchor='middle' fill='white'%3EOVEN SECRET%3C/text%3E%3Ctext x='100' y='145' font-family='Arial' font-size='8' text-anchor='middle' fill='white'%3Eturning your imagination to reality%3C/text%3E%3C/svg%3E" alt="Oven Secret" class="w-16 h-16 object-contain">
+            </div>
+            <p class="max-w-md mx-auto mb-10 font-medium">Lekki's premier destination for artisan confectionery and bespoke celebration cakes.</p>
+            <div class="flex justify-center gap-8 mb-10">
+                <a href="#" class="hover:text-white transition-colors"><i data-lucide="instagram"></i></a>
+                <a href="#" class="hover:text-white transition-colors"><i data-lucide="facebook"></i></a>
+                <a href="#" class="hover:text-white transition-colors"><i data-lucide="twitter"></i></a>
+            </div>
+            <p class="text-xs uppercase tracking-[0.3em] font-bold">© 2026 Oven Secret Confectionery. Lekki Phase 1.</p>
+        </div>
+    </footer>
+
+    <script>
+        const products = {
+            classic: [
+                { name: "Signature Red Velvet", price: "₦35,000", img: "https://images.unsplash.com/photo-1586985289688-ca3cf47d3e6e?auto=format&fit=crop&q=80&w=600", tag: "Best Seller" },
+                { name: "Whipped Vanilla", price: "₦30,000", img: "https://images.unsplash.com/photo-1464349095431-e9a21285b5f3?auto=format&fit=crop&q=80&w=600", tag: null },
+                { name: "Rich Chocolate", price: "₦38,000", img: "https://images.unsplash.com/photo-1578985545062-69928b1d9587?auto=format&fit=crop&q=80&w=600", tag: "Island Favorite" },
+            ],
+            premium: [
+                { name: "The Wedding Pearl", price: "Custom", img: "https://images.unsplash.com/photo-1522661089914-99acc4f4dbfb?auto=format&fit=crop&q=80&w=600", tag: "Bespoke" },
+                { name: "Golden Tier Luxe", price: "₦150,000+", img: "https://images.unsplash.com/photo-1535141192574-5d4897c82536?auto=format&fit=crop&q=80&w=600", tag: "Exclusive" },
+                { name: "Floral Masterpiece", price: "Custom", img: "https://images.unsplash.com/photo-1519340333755-5672c7ec9ae2?auto=format&fit=crop&q=80&w=600", tag: "Artisan" },
+            ],
+            pastries: [
+                { name: "Gourmet Meatpie", price: "₦1,500", img: "https://images.unsplash.com/photo-1572383672419-ab47799639dd?auto=format&fit=crop&q=80&w=600", tag: "Hot" },
+                { name: "Luxury Donut Box", price: "₦8,000", img: "https://images.unsplash.com/photo-1551024601-bec78aea704b?auto=format&fit=crop&q=80&w=600", tag: "Sharing" },
+                { name: "Butter Croissant", price: "₦2,000", img: "https://images.unsplash.com/photo-1555507036-ab1f4038808a?auto=format&fit=crop&q=80&w=600", tag: null },
+            ]
+        };
+
+        const navbar = document.getElementById('navbar');
+        const navTagline = document.getElementById('nav-tagline');
+        const navLinks = document.getElementById('nav-links');
+        const menuBtn = document.getElementById('menu-btn');
+        const grid = document.getElementById('product-grid');
+        const tabs = document.querySelectorAll('.category-btn');
+        const mobileMenu = document.getElementById('mobile-menu');
+
+        lucide.createIcons();
+
+        // Navbar scroll effect
+        window.addEventListener('scroll', () => {
+            if (window.scrollY > 80) {
+                navbar.classList.add('glass-nav');
+                navTagline.classList.replace('text-white/70', 'text-brand-500');
+                navLinks.classList.replace('text-white', 'text-slate-600');
+                menuBtn.classList.replace('text-white', 'text-slate-950');
+            } else {
+                navbar.classList.remove('glass-nav');
+                navTagline.classList.replace('text-brand-500', 'text-white/70');
+                navLinks.classList.replace('text-slate-600', 'text-white');
+                menuBtn.classList.replace('text-slate-950', 'text-white');
+            }
+        });
+
+        // Toggle function using Tailwind classes for smooth transitions
+        const toggleMenu = (isOpen) => {
+            if (isOpen) {
+                mobileMenu.classList.remove('translate-x-full');
+            } else {
+                mobileMenu.classList.add('translate-x-full');
+            }
+        };
+
+        // Open menu
+        menuBtn.addEventListener('click', () => toggleMenu(true));
+
+        // Close menu using the 'X' button
+        document.getElementById('close-menu-btn').addEventListener('click', () => toggleMenu(false));
+
+        // Automatically close menu when ANY link or action button inside it is clicked
+        const mobileMenuElements = mobileMenu.querySelectorAll('a, button:not(#close-menu-btn)');
+        mobileMenuElements.forEach(element => {
+            element.addEventListener('click', () => toggleMenu(false));
+        });
+
+        // Product rendering logic
+        function renderProducts(cat) {
+            grid.innerHTML = products[cat].map((p, i) => `
+                <div class="product-card group bg-white rounded-3xl overflow-hidden shadow-sm hover:shadow-2xl transition-all duration-500 border border-slate-50" style="animation-delay: ${i * 100}ms">
+                    <div class="relative h-72 overflow-hidden">
+                        <img src="${p.img}" class="w-full h-full object-cover group-hover:scale-110 transition-transform duration-1000">
+                        ${p.tag ? `<span class="absolute top-6 left-6 bg-brand-500 text-white text-[10px] font-black px-4 py-1.5 rounded-full uppercase tracking-widest shadow-lg">${p.tag}</span>` : ''}
+                        <button class="absolute bottom-6 right-6 bg-white text-brand-500 p-4 rounded-full shadow-2xl opacity-0 translate-y-4 group-hover:opacity-100 group-hover:translate-y-0 transition-all duration-300">
+                            <i data-lucide="shopping-cart" class="w-5 h-5"></i>
+                        </button>
+                    </div>
+                    <div class="p-8">
+                        <div class="flex justify-between items-start mb-4">
+                            <h3 class="font-black text-2xl text-slate-950 tracking-tight leading-none">${p.name}</h3>
+                            <span class="font-black text-brand-500 text-lg">${p.price}</span>
+                        </div>
+                        <p class="text-slate-500 text-sm font-medium mb-8 leading-relaxed">Artisan confectionery crafted for the true connoisseur. The perfect taste of luxury.</p>
+                        <button class="w-full py-4 bg-slate-50 rounded-2xl text-slate-950 font-black hover:bg-brand-500 hover:text-white transition-all flex items-center justify-center gap-2">
+                            Add to Cart <i data-lucide="plus" class="w-4 h-4"></i>
+                        </button>
+                    </div>
+                </div>
+            `).join('');
+            lucide.createIcons();
+        }
+
+        window.filterProducts = (cat) => {
+            tabs.forEach(t => {
+                if(t.dataset.category === cat) {
+                    t.classList.add('tab-active');
+                    t.classList.remove('bg-slate-50', 'text-slate-400');
+                } else {
+                    t.classList.remove('tab-active');
+                    t.classList.add('bg-slate-50', 'text-slate-400');
+                }
+            });
+            renderProducts(cat);
+        };
+
+        renderProducts('classic');
+    </script>
+</body>
+</html>
